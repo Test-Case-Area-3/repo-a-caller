@@ -1,17 +1,18 @@
-```yaml
-        name: Caller Workflow
 
-        on:
-          workflow_dispatch: # Allows manual triggering
+#More complex example - NOT needed for the immediate test
+ name: Caller Workflow
+ on: [workflow_dispatch]
+ jobs:
+   call_the_reusable_workflow:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Step before calling reusable
+         run: echo "I am a step in Repo A before calling."
+       - name: Call Reusable Workflow
+         uses: YOUR_GITHUB_USERNAME/repo-b-reusable/.github/workflows/reusable-workflow.yml@main
+         with:
+           caller_name: 'Repo A Caller Workflow'
+       - name: Step after calling reusable
+       run: echo "I am a step in Repo A after calling."
 
-        jobs:
-          call_the_reusable_workflow:
-            # This is the runner context that Repo A provides.
-            runs-on: ubuntu-latest
-            steps:
-              - name: Call Reusable Workflow
-                uses: richard-user01-testing/repo-b-reusable/.github/workflows/reusable-workflow.yml@main
-                with:
-                  caller_name: 'Repo A Caller Workflow'
-        ```
-    *   Commit this file to the `main` branch of `repo-a-caller`.
+    
