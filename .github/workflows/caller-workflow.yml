@@ -9,7 +9,7 @@
        - name: Step before calling reusable
          run: echo "I am a step in Repo A before calling."
        - name: Call Reusable Workflow
-         uses: YOUR_GITHUB_USERNAME/repo-b-reusable/.github/workflows/reusable-workflow.yml@main
+         uses: richard-user01-testing/repo-b-reusable/.github/workflows/reusable-workflow.yml@main
          with:
            caller_name: 'Repo A Caller Workflow'
        - name: Step after calling reusable
