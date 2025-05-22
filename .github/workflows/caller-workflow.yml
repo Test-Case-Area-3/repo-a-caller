@@ -1,0 +1,17 @@
+```yaml
+        name: Caller Workflow
+
+        on:
+          workflow_dispatch: # Allows manual triggering
+
+        jobs:
+          call_the_reusable_workflow:
+            # This is the runner context that Repo A provides.
+            runs-on: ubuntu-latest
+            steps:
+              - name: Call Reusable Workflow
+                uses: richard-user01-testing/repo-b-reusable/.github/workflows/reusable-workflow.yml@main
+                with:
+                  caller_name: 'Repo A Caller Workflow'
+        ```
+    *   Commit this file to the `main` branch of `repo-a-caller`.
